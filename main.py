@@ -103,9 +103,6 @@ Notes:
     - create function play_cutscene which takes an id (array index of cutscenes) and plays it
     - needs a state
     
-    Sigil Collection:
-    - make it a combination of GC:CS talisman and Terraria forces
-    
     pyinstaller --hidden-import=jinxed.terminfo.vtwin10 --onefile main.py when building
     
     - Make a state machine
