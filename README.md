@@ -1,5 +1,7 @@
 # untitled_rpg
 (currently untitled) CLI RPG, drawing elements from many contemporaries
+
+**ONLY TESTED ON WINDOWS; MAY NOT WORK ON YOUR OPERATING SYSTEM**
  
 ## Documentation
 *Note: the documentation may or may not be out of date, and is also pretty barebones.*
