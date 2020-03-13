@@ -17,9 +17,9 @@ import sys
 class Menu:
 
     def __init__(self, options, sel_index, results):
-        self.options = options
+        self.options = options  # Array of strings
+        self.results = results  # Array of strings
         self._sel_index = sel_index
-        self.results = results
         self.first_print = True
 
     @property
@@ -40,7 +40,7 @@ class Menu:
     def sel_index(self):
         del self._sel_index
 
-    def print_menu(self):
+    def print_menu_center(self):
         if not self.first_print:
             print(t.move_up(len(self.options) + 1))
             for _ in range(len(self.options) + 1):
@@ -55,6 +55,21 @@ class Menu:
                 print(t.center(str(count) + ". " + option))
             count += 1
         self.first_print = False
+
+    # Prints a menu at cursor where x and y is the top left of the menu
+    # Specifically meant for use in the 'battle' state
+    def battle_menu(self):
+        output = []
+
+        count = 1
+        for option in self.options:
+            if self.sel_index == count:
+                output.append("> " + str(count) + ". " + option)
+            else:
+                output.append(str(count) + ". " + option)
+            count += 1
+
+        return output
 
     def decision(self):
         choice = self.results[(self.sel_index-1)]

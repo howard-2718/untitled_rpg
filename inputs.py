@@ -4,7 +4,7 @@ Input handling file
 
 from config import *
 from classes.entity import Enemy
-from classes.battle import Battle
+from classes.battle import Battle, print_battle_text
 
 
 def menu_key_handler(key, menu):
@@ -37,12 +37,13 @@ def map_key_handler(key, map_):
 
 
 def menu_update(menu):
-    menu.print_menu()
+    menu.print_menu_center()
 
 
 def map_update(map_):
     map_.print_map()
 
+    # Comment out the rest of the function to toggle between testing the map and testing battles
     with t.location():  # TODO: make HP and MP align
         for obj in party:
             print(obj.name + " ------- HP: " + str(obj.cur_hp) + "/" + str(obj.hp) +
@@ -51,7 +52,12 @@ def map_update(map_):
     # TODO: encounter chances
     # Create battle here
     cur_enemies = [create_enemy(0, 1, 10), create_enemy(0, 1, 10)]
-    Battle(cur_enemies)
+    s.cur_battle = Battle(cur_enemies)
+
+
+def battle_update(battle):
+    battle.update_menu()
+    print_battle_text()
 
 
 def create_enemy(enemy_id, lvl, xp):

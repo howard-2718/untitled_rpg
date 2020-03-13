@@ -24,6 +24,7 @@ class Map:
         self.first_print = True
 
     def print_map(self):
+        # If the player attempts to walk into an un-walkable tile, simply set their position to before.
         if self.tile_data[self.pos_y][self.pos_x] == "1":
             self.pos_x = self.prev_x
             self.pos_y = self.prev_y
@@ -45,6 +46,8 @@ class Map:
                     if x == self.pos_y and y == self.pos_x:
                         row_print += t.green("@ ")
                     else:
+                        # 0: Can walk on
+                        # 1: Cannot walk on
                         if tile == "0":
                             row_print += t.white(". ")
                         elif tile == "1":

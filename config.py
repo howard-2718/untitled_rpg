@@ -14,6 +14,11 @@ s = StateMachine()
 global party
 party = []
 
+# All text on the battle portion of the screen is stored in this variable to be printed
+# Has space for 50 (51?) lines, the extra are for just in case
+global battle_text
+battle_text = [""] * 50
+
 global maps
 maps = [["111111111111111111111111111111",
          "100000000000000000000000000001",

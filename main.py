@@ -40,10 +40,10 @@ def center_ascii(text, from_center_y):
 
 center_ascii(title, -10)
 
-cur_menu = Menu(["New Game", "Quit"], 1, ["set_state_map", "exit"])
-cur_menu.print_menu()
+s.cur_menu = Menu(["New Game", "Quit"], 1, ["set_state_map", "exit"])
+s.cur_menu.print_menu_center()
 
-cur_map = Map(0, 2, 2)
+s.cur_map = Map(0, 2, 2)
 
 # Create the party
 party.append(Player("Constantine", 1, 0, [100, 220],
@@ -64,18 +64,18 @@ with t.hidden_cursor():  # This hides the cursor, which is nice for game play bu
             val = t.inkey()
 
             if s.get_state() == 'title':
-                inputs.menu_key_handler(val, cur_menu)
+                inputs.menu_key_handler(val, s.cur_menu)
             elif s.get_state() == 'map':
-                inputs.map_key_handler(val, cur_map)
+                inputs.map_key_handler(val, s.cur_map)
             elif s.get_state() == 'battle':
-                pass
+                inputs.menu_key_handler(val, s.cur_menu)
 
             if s.get_state() == 'title':
-                inputs.menu_update(cur_menu)
+                inputs.menu_update(s.cur_menu)
             elif s.get_state() == 'map':
-                inputs.map_update(cur_map)
+                inputs.map_update(s.cur_map)
             elif s.get_state() == 'battle':
-                pass
+                inputs.battle_update(s.cur_battle)
 
         print(f'key input stopped.{t.normal}')
 
@@ -114,6 +114,7 @@ Notes:
 """
     To-do:
 
+    - Write documentation before I forget what anything does
     - Figure out how the screen space is going to be divvied up
     - Re-vamp map drawing system
     - Make explored/unexplored tile system
